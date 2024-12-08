@@ -1,10 +1,17 @@
 #!/usr/bin/env python
+import subprocess
 import sys, re
 from subprocess import check_output
 
 commit_msg_filepath = sys.argv[1]
 
-branch = check_output(['git', 'symbolic-ref', '--short', 'HEAD']).strip().decode() 
+
+try:
+    branch = check_output(['git', 'symbolic-ref', '--short', 'HEAD']).strip().decode() 
+except subprocess.CalledProcessError:
+    branch = ""
+
+
 regex = r'(\w+-\d+)'
 print(branch)
 if re.match(regex, branch):
@@ -16,3 +23,6 @@ if re.match(regex, branch):
 elif branch != 'master' and branch != 'dev':
     print('Incorrect branch name')
     sys.exit(1)
+elif branch == "":
+    print("You are in a detached HEAD state")
+    sys.exit(0)
