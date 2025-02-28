@@ -17,7 +17,7 @@ def get_current_branch():
 
 def extract_jira_id(branch_name):
     """Extract JIRA task ID from branch name."""
-    pattern = r'([A-Z]+-[0-9]+)'
+    pattern = r'([A-Z0-9]+-[0-9]+)'
     match = re.search(pattern, branch_name)
     if match:
         return match.group(1)
@@ -36,7 +36,7 @@ def is_rebasing():
 
 def main():
     # Validate args
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("Usage: prepare-commit-msg <commit-msg-file>")
         sys.exit(1)
     
