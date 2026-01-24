@@ -13,10 +13,10 @@ fish_add_path ~/go/bin
 fish_add_path ~/.local/bin
 
 # Aliases
-alias ls='eza --icons'
-alias ll='eza -la --icons'
-alias la='eza -a --icons'
-alias lt='eza --tree --icons'
+alias ls='eza'
+alias ll='eza -la'
+alias la='eza -a'
+alias lt='eza --tree'
 alias cat='bat'
 alias vim='nvim'
 alias v='nvim'
