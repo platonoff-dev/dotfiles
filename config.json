@@ -1,0 +1,24 @@
+{
+  "packages": [
+    "git",
+    "neovim",
+    "tmux",
+    "fish",
+    "fzf",
+    "ripgrep",
+    "fd",
+    "bat",
+    "eza",
+    "starship",
+    "htop",
+    "curl",
+    "wget",
+    "unzip",
+    "openssh",
+    "python",
+    "python-pip",
+    "go",
+    "rust"
+  ],
+  "scripts": []
+}

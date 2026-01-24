@@ -1,0 +1,36 @@
+[user]
+    # Set your name and email
+    # name = Your Name
+    # email = your@email.com
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    pager = bat --style=plain
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+
+[alias]
+    s = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --oneline --graph --decorate
+    last = log -1 HEAD
+    unstage = reset HEAD --
+
+[diff]
+    colorMoved = default
+
+[merge]
+    conflictstyle = diff3
+
+# Include local config
+[include]
+    path = ~/.gitconfig.local
