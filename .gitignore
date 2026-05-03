@@ -2,4 +2,6 @@
 
 config/fish/fish_variables
 config/nvim/nvim-pack-lock.json
+config/hypr/monitors.conf
+config/hypr/workspaces.conf
 *.bak

@@ -120,6 +120,20 @@
           "active": true,
           "command": "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && pamixer -u || pamixer -m'",
           "update-command": "sh -c 'pamixer --get-mute | grep -q false && echo true || echo false'"
+        },
+        {
+          "label": "󰖂",
+          "type": "toggle",
+          "tooltip": "Cloudflare WARP",
+          "active": false,
+          "command": "sh -c '[ \"$SWAYNC_TOGGLE_STATE\" = true ] && warp-cli connect || warp-cli disconnect'",
+          "update-command": "sh -c 'warp-cli status 2>/dev/null | grep -qE \"Status update: Connected$\" && echo true || echo false'"
+        },
+        {
+          "label": "󰍹",
+          "type": "button",
+          "tooltip": "Configure displays",
+          "command": "sh -c 'swaync-client --close-panel; nwg-displays'"
         }
       ]
     }
