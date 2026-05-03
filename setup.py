@@ -148,6 +148,14 @@ def setup_symlinks(config: dict) -> None:
             target = config_dir / item.name
             create_symlink(item, target)
 
+    # darkman 2.x reads hook scripts from $XDG_DATA_HOME/darkman/, but its
+    # config lives in $XDG_CONFIG_HOME/darkman/. Symlink both XDG paths to
+    # the same dotfiles directory so config + theme.sh sit next to each other.
+    darkman_src = conf_dir / "darkman"
+    if darkman_src.exists():
+        data_home = Path(os.environ.get("XDG_DATA_HOME") or home / ".local/share")
+        create_symlink(darkman_src, data_home / "darkman")
+
 
 def run_scripts(scripts: list[str]) -> None:
     """Run post-install scripts."""

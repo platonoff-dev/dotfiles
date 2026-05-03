@@ -13,6 +13,22 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
+
+-- Colorscheme (gruvbox via built-in vim.pack manager — Neovim 0.12+)
+-- Mode is driven by darkman: hooks write 'light' or 'dark' to the sentinel
+-- file and SIGUSR1 nvim instances to swap live.
+vim.pack.add({ 'https://github.com/ellisonleao/gruvbox.nvim' })
+
+local mode_file = vim.fn.expand('~/.cache/theme-mode')
+local function apply_theme()
+  local f = io.open(mode_file, 'r')
+  local mode = f and f:read('*l') or 'dark'
+  if f then f:close() end
+  vim.opt.background = (mode == 'light') and 'light' or 'dark'
+  pcall(vim.cmd.colorscheme, 'gruvbox')
+end
+apply_theme()
+vim.api.nvim_create_autocmd('Signal', { pattern = 'SIGUSR1', callback = apply_theme })
 vim.opt.updatetime = 250
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.undofile = true
