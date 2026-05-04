@@ -17,13 +17,12 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "hyprland/language",
         "tray",
-        "idle_inhibitor",
         "pulseaudio",
         "bluetooth",
         "network",
         "backlight",
-        "power-profiles-daemon",
         "battery",
         "cpu",
         "memory",
@@ -100,12 +99,11 @@
         "format": "<span style=\"italic\">{}</span>"
     },
 
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-ru": "RU",
+        "tooltip-format": "Keyboard layout: {long}"
     },
 
     "tray": {
@@ -164,18 +162,6 @@
         "format-alt": "{icon} {time}",
         "tooltip-format": "Battery: {capacity}% ({time})",
         "format-icons": ["󰂃", "󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
-    },
-
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
-        }
     },
 
     "network": {

@@ -67,6 +67,7 @@ tooltip label { color: @fg; padding: 4px; }
 #custom-swaync,
 #custom-calendar,
 #custom-weather,
+#language,
 #submap {
     padding: 0 7px;
     margin: 2px 1px;
@@ -187,6 +188,14 @@ tooltip label { color: @fg; padding: 4px; }
 
 #idle_inhibitor { background-color: @bg1; color: @fg2; }
 #idle_inhibitor.activated { background-color: @yellow; color: @bg; }
+
+#language {
+    background-color: @purple;
+    color: @bg;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0 8px;
+}
 
 #custom-swaync { background-color: @bg1; color: @fg; font-size: 14px; }
 #custom-swaync.notification { background-color: @orange; color: @bg; }
