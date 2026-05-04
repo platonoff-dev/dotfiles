@@ -156,6 +156,17 @@ def setup_symlinks(config: dict) -> None:
         data_home = Path(os.environ.get("XDG_DATA_HOME") or home / ".local/share")
         create_symlink(darkman_src, data_home / "darkman")
 
+    # Link systemd user drop-ins (e.g. swaync.service.d) into
+    # ~/.config/systemd/user/ without touching that directory's existing
+    # contents — only the drop-in subdirectory itself is replaced.
+    systemd_src = DOTFILES_DIR / "systemd-user"
+    if systemd_src.exists():
+        print("\nLinking systemd user drop-ins:")
+        systemd_user_dir = config_dir / "systemd" / "user"
+        systemd_user_dir.mkdir(parents=True, exist_ok=True)
+        for item in systemd_src.iterdir():
+            create_symlink(item, systemd_user_dir / item.name)
+
 
 def run_scripts(scripts: list[str]) -> None:
     """Run post-install scripts."""

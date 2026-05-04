@@ -1,0 +1,222 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,
+    "spacing": 2,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray",
+        "idle_inhibitor",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "backlight",
+        "power-profiles-daemon",
+        "battery",
+        "cpu",
+        "memory",
+        "custom/weather",
+        "custom/calendar",
+        "custom/swaync",
+        "custom/power"
+    ],
+
+    "custom/launcher": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wofi --show drun"
+    },
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout -p layer-shell"
+    },
+
+    "custom/swaync": {
+        "tooltip": true,
+        "tooltip-format": "Left-click: Control Center  •  Right-click: Toggle DND",
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂜",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰪑",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "󰂜",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 60,
+        "separate-outputs": true
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        "icon-size": 14,
+        "spacing": 6
+    },
+
+    "custom/calendar": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/calendar.sh",
+        "interval": 30,
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "ghostty -e sh -c 'gcalcli calw 2 || (echo \"gcalcli not set up — run: gcalcli init\"; sleep 4)'",
+        "on-click-right": "ghostty -e sh -c 'gcalcli agenda \"today\" \"$(date -d \"+7 days\" +%Y-%m-%d)\"; read -r _'"
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "interval": 600,
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "xdg-open https://wttr.in/"
+    },
+
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "interval": 5,
+        "tooltip-format": "CPU usage: {usage}%"
+    },
+
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "interval": 5,
+        "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip-format": "Brightness: {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "󰂅 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "tooltip-format": "Battery: {capacity}% ({time})",
+        "format-icons": ["󰂃", "󰁻", "󰁽", "󰁿", "󰂁", "󰁹"]
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+
+    "network": {
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) — {ipaddr}",
+        "tooltip-format-ethernet": "{ifname} via {gwaddr}",
+        "format-linked": "󰈁 {ifname}",
+        "format-disconnected": "󰖪",
+        "on-click": "kitty -e nmtui",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰟎",
+        "format-muted": "󰝟",
+        "tooltip-format": "Volume: {volume}% ({desc})",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰦧",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5"
+    }
+}

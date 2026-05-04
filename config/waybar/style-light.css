@@ -1,0 +1,198 @@
+/* =============================================================
+   Gruvbox Light — Waybar
+   Auto-loaded by waybar when xdg-desktop-portal reports
+   appearance = "light" (driven by darkman).
+   Palette: https://github.com/morhetz/gruvbox
+   ============================================================= */
+@define-color bg      #fbf1c7;
+@define-color bg0_h   #f9f5d7;
+@define-color bg1     #ebdbb2;
+@define-color bg2     #d5c4a1;
+@define-color bg3     #bdae93;
+@define-color fg      #3c3836;
+@define-color fg2     #504945;
+@define-color gray    #7c6f64;
+@define-color red     #cc241d;
+@define-color red_d   #9d0006;
+@define-color green   #98971a;
+@define-color yellow  #d79921;
+@define-color blue    #458588;
+@define-color blue_d  #076678;
+@define-color purple  #b16286;
+@define-color aqua    #689d6a;
+@define-color orange  #d65d0e;
+
+* {
+    font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: alpha(@bg, 0.85);
+    color: @fg;
+    border-radius: 10px;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+window#waybar.hidden { opacity: 0.2; }
+
+tooltip {
+    background: @bg0_h;
+    border: 1px solid @bg2;
+    border-radius: 10px;
+}
+tooltip label { color: @fg; padding: 4px; }
+
+/* ---------- Modules common ---------- */
+#workspaces,
+#window,
+#tray,
+#idle_inhibitor,
+#pulseaudio,
+#bluetooth,
+#network,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#cpu,
+#memory,
+#clock,
+#custom-launcher,
+#custom-power,
+#custom-swaync,
+#custom-calendar,
+#custom-weather,
+#submap {
+    padding: 0 7px;
+    margin: 2px 1px;
+    border-radius: 6px;
+    background-color: @bg1;
+    color: @fg;
+}
+
+/* ---------- Launcher / power ---------- */
+#custom-launcher {
+    background-color: @orange;
+    color: @bg;
+    font-size: 14px;
+    padding: 0 9px;
+    margin-left: 4px;
+}
+
+#custom-power {
+    background-color: @red;
+    color: @bg;
+    font-size: 13px;
+    padding: 0 9px;
+    margin-right: 4px;
+}
+
+/* ---------- Workspaces ---------- */
+#workspaces {
+    padding: 0 2px;
+    background-color: @bg1;
+}
+#workspaces button {
+    padding: 0 6px;
+    margin: 1px 1px;
+    color: @fg2;
+    background: transparent;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+#workspaces button:hover {
+    background-color: @bg2;
+    color: @fg;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button.active {
+    background-color: @orange;
+    color: @bg;
+    padding: 0 9px;
+}
+#workspaces button.urgent {
+    background-color: @red;
+    color: @bg;
+}
+#workspaces button.empty { color: @bg3; }
+
+/* ---------- Window title ---------- */
+#window {
+    background: transparent;
+    color: @fg2;
+    font-style: italic;
+}
+
+/* ---------- Calendar (replaces clock) ---------- */
+#custom-calendar {
+    background-color: @yellow;
+    color: @bg;
+    font-weight: 600;
+}
+
+/* ---------- Weather ---------- */
+#custom-weather {
+    background-color: @blue;
+    color: @bg;
+    font-weight: 600;
+}
+#custom-weather.offline,
+#custom-weather.error {
+    background-color: @bg2;
+    color: @fg2;
+}
+
+/* ---------- Battery ---------- */
+#battery { background-color: @green; color: @bg; }
+#battery.charging, #battery.plugged { background-color: @aqua; color: @bg; }
+#battery.warning:not(.charging) { background-color: @yellow; color: @bg; }
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @bg;
+    animation: blink 1s steps(12) infinite alternate;
+}
+@keyframes blink { to { background-color: @red_d; } }
+
+/* ---------- Other modules ---------- */
+#cpu,
+#memory,
+#backlight,
+#battery,
+#network,
+#pulseaudio,
+#bluetooth,
+#power-profiles-daemon,
+#idle_inhibitor {
+    font-size: 13px;
+}
+
+#cpu      { background-color: @aqua;     color: @bg; }
+#memory   { background-color: @purple;   color: @bg; }
+#backlight { background-color: @orange;  color: @bg; }
+#network  { background-color: @blue;     color: @bg; }
+#network.disconnected { background-color: @red; color: @bg; }
+#pulseaudio { background-color: @yellow; color: @bg; }
+#pulseaudio.muted { background-color: @bg2; color: @fg2; }
+#bluetooth { background-color: @blue_d;  color: @bg; }
+#bluetooth.disabled { background-color: @bg2; color: @fg2; }
+#power-profiles-daemon { background-color: @aqua; color: @bg; }
+#power-profiles-daemon.performance { background-color: @red; color: @bg; }
+#power-profiles-daemon.power-saver  { background-color: @green; color: @bg; }
+
+#idle_inhibitor { background-color: @bg1; color: @fg2; }
+#idle_inhibitor.activated { background-color: @yellow; color: @bg; }
+
+#custom-swaync { background-color: @bg1; color: @fg; font-size: 14px; }
+#custom-swaync.notification { background-color: @orange; color: @bg; }
+#custom-swaync.dnd-notification,
+#custom-swaync.dnd-none { background-color: @red_d; color: @bg; }
+
+#tray { background-color: @bg1; }
+#tray > .needs-attention { -gtk-icon-effect: highlight; }
+#tray > .passive { -gtk-icon-effect: dim; }
