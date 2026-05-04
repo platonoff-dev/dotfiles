@@ -1,0 +1,93 @@
+{
+  "manifest_version": 2,
+  "name": "Gruvbox Auto",
+  "description": "Gruvbox light + dark in one theme; follows the system color scheme. Light variant from Muted Sage Gruvbox Light (tc68), dark variant from Muted Gruvbox Dark (merlin).",
+  "version": "1.0.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "gruvbox-auto@platonoff.dotfiles"
+    }
+  },
+  "theme": {
+    "colors": {
+      "frame": "#f9f5d7",
+      "frame_inactive": "#fbf1c7",
+      "toolbar": "#fbf1c7",
+      "toolbar_top_separator": "#fbf1c7",
+      "toolbar_vertical_separator": "#7c6f64",
+      "toolbar_bottom_separator": "#fbf1c7",
+      "tab_background_separator": "#ebdbb2",
+      "tab_background_text": "#504945",
+      "tab_text": "#3c3836",
+      "tab_line": "#689D6A",
+      "tab_loading": "#689D6A",
+      "bookmark_text": "#3c3836",
+      "sidebar": "#f2e5bc",
+      "sidebar_text": "#3c3836",
+      "sidebar_highlight_text": "#3c3836",
+      "sidebar_highlight": "#689D6A",
+      "sidebar_border": "#689D6A",
+      "toolbar_field": "#ebdbb2",
+      "toolbar_field_focus": "#d5c4a1",
+      "toolbar_field_border": "#f2e5bc",
+      "toolbar_field_border_focus": "#689D6A",
+      "toolbar_field_highlight": "#076678",
+      "toolbar_field_highlight_text": "#3c3836",
+      "toolbar_field_text": "#504945",
+      "toolbar_field_text_focus": "#ebdbb2",
+      "popup": "#ebdbb2",
+      "popup_text": "#3c3836",
+      "popup_border": "#ebdbb2",
+      "popup_highlight": "#689D6A",
+      "popup_highlight_text": "#3c3836",
+      "ntp_background": "#f2e5bc",
+      "ntp_text": "#3c3836",
+      "button_background_active": "#928374",
+      "button_background_hover": "#a89984"
+    },
+    "properties": {
+      "color_scheme": "light"
+    }
+  },
+  "dark_theme": {
+    "colors": {
+      "frame": "#1d2021",
+      "frame_inactive": "#282828",
+      "toolbar": "#282828",
+      "toolbar_top_separator": "#282828",
+      "toolbar_vertical_separator": "#a89984",
+      "toolbar_bottom_separator": "#282828",
+      "tab_background_separator": "#3c3836",
+      "tab_background_text": "#d5c4a1",
+      "tab_text": "#ebdbb2",
+      "tab_line": "#689D6A",
+      "tab_loading": "#689D6A",
+      "bookmark_text": "#ebdbb2",
+      "sidebar": "#32302f",
+      "sidebar_text": "#ebdbb2",
+      "sidebar_highlight_text": "#ebdbb2",
+      "sidebar_highlight": "#689D6A",
+      "sidebar_border": "#689D6A",
+      "toolbar_field": "#3c3836",
+      "toolbar_field_focus": "#504945",
+      "toolbar_field_border": "#32302f",
+      "toolbar_field_border_focus": "#689D6A",
+      "toolbar_field_highlight": "#83a598",
+      "toolbar_field_highlight_text": "#ebdbb2",
+      "toolbar_field_text": "#d5c4a1",
+      "toolbar_field_text_focus": "#ebdbb2",
+      "popup": "#3c3836",
+      "popup_text": "#ebdbb2",
+      "popup_border": "#3c3836",
+      "popup_highlight": "#689D6A",
+      "popup_highlight_text": "#ebdbb2",
+      "ntp_background": "#32302f",
+      "ntp_text": "#ebdbb2",
+      "button_background_active": "#928374",
+      "button_background_hover": "#7c6f64"
+    },
+    "properties": {
+      "color_scheme": "dark"
+    }
+  }
+}

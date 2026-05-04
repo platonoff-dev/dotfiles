@@ -79,6 +79,11 @@ fi
 # bridge can be flaky — kick it directly so the right style-<mode>.css loads.
 pkill -SIGUSR2 -x waybar 2>/dev/null || true
 
+# Thunderbird needs no explicit poke here: scripts/install-thunderbird-theme.py
+# installs a single combined "Gruvbox Auto" XPI that uses both `theme` (light)
+# and `dark_theme` (dark) manifest keys, and Mozilla apps switch between the
+# two automatically when the system color-scheme above flips.
+
 # swaync has no built-in light/dark switching: copy the right variant into the
 # cache file that swaync was launched with, then ask it to reparse.
 swaync_src="$HOME/.config/swaync/style-${mode}.css"
