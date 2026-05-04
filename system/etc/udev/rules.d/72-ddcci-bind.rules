@@ -1,0 +1,3 @@
+# Auto-bind the ddcci kernel driver to i2c buses of connected DDC-capable
+# monitors so ddcci_backlight exposes them under /sys/class/backlight/.
+ACTION=="change", SUBSYSTEM=="drm", RUN+="/usr/local/bin/ddcci-bind"

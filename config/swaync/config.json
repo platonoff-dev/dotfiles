@@ -36,6 +36,7 @@
     "buttons-grid",
     "volume",
     "backlight",
+    "backlight#external",
     "mpris",
     "dnd",
     "notifications"
@@ -68,6 +69,11 @@
       "label": "󰃞",
       "device": "intel_backlight",
       "min": 1
+    },
+    "backlight#external": {
+      "label": "󰍹",
+      "device": "ddcci9",
+      "min": 0
     },
     "buttons-grid": {
       "buttons-per-row": 6,

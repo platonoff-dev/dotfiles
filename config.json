@@ -23,6 +23,7 @@
     "swaync",
     "waybar",
     "nwg-displays",
+    "ddcutil",
     "jq",
     "aur:gcalcli",
     "aur:colloid-gruvbox-gtk-theme-git",

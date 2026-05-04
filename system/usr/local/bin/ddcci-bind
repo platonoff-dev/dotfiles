@@ -1,0 +1,34 @@
+#!/bin/sh
+# Bind/unbind the ddcci kernel driver on i2c buses of DDC-capable monitors
+# so ddcci_backlight creates /sys/class/backlight/ddcci<N> entries that
+# swaync (and other backlight consumers) can drive. Idempotent; safe to
+# call repeatedly. Triggered by /etc/udev/rules.d/72-ddcci-bind.rules on
+# DRM "change" events and intended to also be run once at install time.
+
+set -u
+
+bind_unbind() {
+    conn="$1"
+    [ -f "$conn/status" ] || return 0
+    [ -L "$conn/ddc" ] || return 0
+
+    i2c_bus=$(basename "$(readlink "$conn/ddc")")
+    [ -n "$i2c_bus" ] || return 0
+    i2c_num=${i2c_bus#i2c-}
+
+    i2c_dev="/sys/bus/i2c/devices/$i2c_bus"
+    [ -d "$i2c_dev" ] || return 0
+
+    bound="/sys/bus/i2c/drivers/ddcci/${i2c_num}-0037"
+    status=$(cat "$conn/status" 2>/dev/null) || return 0
+
+    if [ "$status" = "connected" ] && [ ! -e "$bound" ]; then
+        echo "ddcci 0x37" > "$i2c_dev/new_device" 2>/dev/null || true
+    elif [ "$status" != "connected" ] && [ -e "$bound" ]; then
+        echo "0x37" > "$i2c_dev/delete_device" 2>/dev/null || true
+    fi
+}
+
+for conn in /sys/class/drm/card*-HDMI-* /sys/class/drm/card*-DP-* /sys/class/drm/card*-DVI-*; do
+    [ -e "$conn" ] && bind_unbind "$conn"
+done
