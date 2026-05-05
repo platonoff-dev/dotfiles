@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# Tear down the screensaver kitty window (and any orphan terminal-tools).
+# Tear down every screensaver kitty across all monitors and exit the dismiss
+# submap. Idempotent — safe to call when nothing's running.
 
-PIDFILE="/run/user/$(id -u)/hypr-screensaver.pid"
+hyprctl dispatch submap reset >/dev/null 2>&1
 
-if [[ -f "$PIDFILE" ]]; then
-    pid=$(cat "$PIDFILE")
-    [[ -n "$pid" ]] && kill -TERM "$pid" 2>/dev/null
-    rm -f "$PIDFILE"
-fi
+for _ in 1 2 3 4; do
+    hyprctl clients -j 2>/dev/null \
+        | jq -e 'any(.[]; .class == "hypr-screensaver")' >/dev/null 2>&1 \
+        || break
+    hyprctl dispatch closewindow class:hypr-screensaver >/dev/null 2>&1 || true
+done
 
-# Catch any survivors started under the dedicated class
-hyprctl dispatch closewindow class:hypr-screensaver >/dev/null 2>&1 || true
+# Catch survivors that haven't fully registered with hyprctl yet
 pkill -TERM -f 'kitty .*hypr-screensaver' 2>/dev/null || true

@@ -2,7 +2,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 26,
+    "height": 32,
     "spacing": 2,
     "margin-top": 4,
     "margin-left": 8,
@@ -22,6 +22,7 @@
         "pulseaudio",
         "bluetooth",
         "network",
+        "custom/warp",
         "backlight",
         "battery",
         "cpu",
@@ -33,14 +34,14 @@
     ],
 
     "custom/launcher": {
-        "format": "",
+        "format": "󰣇",
         "tooltip": false,
         "on-click": "wofi --show drun"
     },
 
     "custom/power": {
-        "format": "",
-        "tooltip": false,
+        "format": "⏻",
+        "tooltip": "Power menu",
         "on-click": "wlogout -p layer-shell"
     },
 
@@ -107,7 +108,7 @@
     },
 
     "tray": {
-        "icon-size": 14,
+        "icon-size": 16,
         "spacing": 6
     },
 
@@ -127,7 +128,18 @@
         "interval": 600,
         "return-type": "json",
         "tooltip": true,
-        "on-click": "xdg-open https://wttr.in/"
+        "on-click": "~/.config/waybar/scripts/weather-popup.sh",
+        "on-click-right": "xdg-open https://wttr.in/"
+    },
+
+    "custom/warp": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/warp.sh",
+        "interval": 5,
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "sh -c 'warp-cli status | grep -q Connected && warp-cli disconnect || warp-cli connect'",
+        "on-click-right": "ghostty -e sh -c 'warp-cli stats; read -r _'"
     },
 
     "cpu": {
