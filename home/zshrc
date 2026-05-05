@@ -65,6 +65,9 @@ alias diff='delta'
 alias vim='nvim'
 alias v='nvim'
 
+# Corporate Claude Code — isolated config dir
+alias cclaude='CLAUDE_CONFIG_DIR="$HOME/.claude-cloudlinux" claude'
+
 # Git
 alias g='git'
 alias ga='git add'
